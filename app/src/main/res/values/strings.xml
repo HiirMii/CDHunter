@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CD Hunter</string>
+
+    <!-- Bottom Navigation -->
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_search">Search</string>
+    <string name="bottom_nav_collection">Collection</string>
+    <string name="bottom_nav_wishlist">Wishlist</string>
+
 </resources>
