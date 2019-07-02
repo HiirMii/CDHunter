@@ -1,14 +1,72 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:windowBackground">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- AUTH -->
+    
+    <style name="auth_main_header">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/auth_main_header_size</item>
+    </style>
+
+    <style name="auth_edit_text_hint">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/auth_label_size</item>
+    </style>
+
+    <style name="auth_text_input_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/normal_margin</item>
+    </style>
+
+    <style name="auth_text_input_edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="auth_edit_text_helper_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:color">@android:color/white</item>
+        <item name="android:textSize">@dimen/auth_helper_text</item>
+    </style>
+
+    <style name="auth_text_input_layout_error">
+        <item name="android:textColor">@color/googleRed</item>
+    </style>
+    
+    <style name="auth_method_picker_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/auth_btn_vertical_padding</item>
+    </style>
+
+    <style name="auth_submit_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/auth_btn_vertical_padding</item>
+        <item name="android:paddingBottom">@dimen/auth_btn_vertical_padding</item>
+        <item name="android:paddingStart">@dimen/auth_btn_horizontal_padding</item>
+        <item name="android:paddingEnd">@dimen/auth_btn_horizontal_padding</item>
+    </style>
+
+    <style name="auth_text_btn" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/colorPrimaryLight</item>
     </style>
 
 </resources>

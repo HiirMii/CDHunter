@@ -6,4 +6,6 @@
     <color name="colorAccent">#d8a016</color>
     <color name="colorAccentDark">#9f6b08</color>
     <color name="colorAccentLight">#f9ce5c</color>
+
+    <color name="googleRed">#B23121</color>
 </resources>

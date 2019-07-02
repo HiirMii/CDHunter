@@ -1,10 +1,64 @@
 <resources>
     <string name="app_name">CD Hunter</string>
 
-    <!-- Bottom Navigation -->
+    <!-- BOTTOM NAVIGATION -->
+
     <string name="bottom_nav_home">Home</string>
     <string name="bottom_nav_search">Search</string>
     <string name="bottom_nav_collection">Collection</string>
     <string name="bottom_nav_wishlist">Wishlist</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- PROGRESS -->
+    <string name="progress_message">Loading …</string>
+
+    <!-- AUTH METHOD PICKER -->
+
+    <string name="auth_logo_description">App logo</string>
+
+    <string name="greeting_text_first_line">Millions of albums.</string>
+    <string name="greeting_text_second_line">Manage your collection.</string>
+
+    <string name="auth_sign_up_btn">Sign up</string>
+    <string name="auth_google_btn">Continue with Google</string>
+    <string name="auth_login_btn">Log in</string>
+
+    <!-- AUTH SIGN UP -->
+
+    <string name="auth_sign_up_header">Create account</string>
+    <string name="auth_sign_up_username_hint">Choose username</string>
+    <string name="auth_sign_up_username_helper_text">This appears on your CD Hunter profile.</string>
+    <string name="auth_sign_up_email_hint">What is your email?</string>
+    <string name="auth_sign_up_email_helper_text">You\'ll need to confirm this email later.</string>
+    <string name="auth_sign_up_password_hint">Create a password</string>
+    <string name="auth_sign_up_password_helper_text">Use at least 8 characters.</string>
+    <string name="auth_sign_up_submit_btn_text">Done</string>
+    <string name="auth_sign_up_username_empty_error_msg">Username required.</string>
+    <string name="auth_sign_up_email_empty_error_msg">Email required.</string>
+    <string name="auth_sign_up_email_valid_error_msg">Enter a valid email.</string>
+    <string name="auth_sign_up_email_exists_error_msg">An account with the given email address already exists.</string>
+    <string name="auth_sign_up_password_empty_error_msg">Password required.</string>
+    <string name="auth_sign_up_password_length_error_msg">Password should be at least 8 characters long.</string>
+
+    <!-- AUTH LOG_IN -->
+
+    <string name="auth_log_in_header">Log in</string>
+    <string name="auth_log_in_email_hint">Email</string>
+    <string name="auth_log_in_password_hint">Password</string>
+    <string name="auth_log_in_account_recovery_text">Having trouble logging in? Get help here.</string>
+    <string name="auth_log_in_email_invalid_error_msg">Invalid email.</string>
+    <string name="auth_log_in_wrong_password_error_msg">Wrong password.</string>
+
+    <!-- AUTH ACCOUNT_RECOVERY -->
+    <string name="auth_account_recovery_header">Recover Your Account</string>
+    <string name="auth_account_recovery_helper_text">Enter the email address that you used to register.
+        We\'ll send you an email to recover your account.</string>
+    <string name="auth_account_recovery_btn_text">Send</string>
+    <string name="auth_account_recovery_error_msg">There is no user corresponding to the given email address.</string>
+    <string name="auth_account_recovery_user_msg">Account Recovery email has been sent. Please check your email…</string>
+
+    <string name="auth_sign_out">Sign out</string>
 
 </resources>

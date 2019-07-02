@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    //bottom navigation
     <dimen name="design_bottom_navigation_text_size" tools:override="true">10sp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">10sp</dimen>
+
+    //auth
+    <dimen name="auth_logo_size">72dp</dimen>
+
+    <dimen name="auth_container_padding">40dp</dimen>
+    <dimen name="auth_btn_vertical_padding">14dp</dimen>
+    <dimen name="auth_btn_horizontal_padding">45dp</dimen>
+    <dimen name="auth_btn_corner_radius">25dp</dimen>
+
+    //text sizes
+    <dimen name="auth_app_name_size">30sp</dimen>
+    <dimen name="auth_main_header_size">24sp</dimen>
+    <dimen name="auth_label_size">16sp</dimen>
+    <dimen name="auth_helper_text">10sp</dimen>
+
+    //margins
+    <dimen name="normal_margin">16dp</dimen>
+    <dimen name="tiny_margin">4dp</dimen>
 </resources>

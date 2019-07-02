@@ -11,9 +11,8 @@ import androidx.fragment.app.Fragment;
 import com.example.android.cdhunter.R;
 import com.example.android.cdhunter.di.Injectable;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import org.jetbrains.annotations.NotNull;
+
 public class CollectionFragment extends Fragment implements Injectable {
 
 
@@ -23,7 +22,7 @@ public class CollectionFragment extends Fragment implements Injectable {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_collection, container, false);
