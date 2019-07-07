@@ -17,6 +17,17 @@
         app:layout_constraintVertical_bias="0.2"
         android:text="@string/bottom_nav_home" />
 
+    <TextView
+        android:id="@+id/tv_artist_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.35"
+        tools:text="Artist name" />
+
     <Button
         android:id="@+id/auth_sign_out_btn"
         android:layout_width="wrap_content"
