@@ -36,6 +36,8 @@ public class MainActivity extends BaseActivity implements HasSupportFragmentInje
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
+    Fragment currentFragment;
+
     @BindView(R.id.bottom_navigation)
     BottomNavigationView navigationView;
 
@@ -44,6 +46,8 @@ public class MainActivity extends BaseActivity implements HasSupportFragmentInje
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        currentFragment = new HomeFragment();
+
         firebaseAuth = FirebaseAuth.getInstance();
 
         authStateListener = firebaseAuth -> {
@@ -51,7 +55,7 @@ public class MainActivity extends BaseActivity implements HasSupportFragmentInje
             if (user != null) {
                 // user is signed in
                 ButterKnife.bind(this);
-                loadFragment(getSupportFragmentManager(), new HomeFragment(), R.id.main_fragment_container);
+                loadFragment(getSupportFragmentManager(), currentFragment, R.id.main_fragment_container);
                 navigationView.setOnNavigationItemSelectedListener(this);
                 Timber.tag(TAG).d("User successfully logged in.");
             } else {
@@ -86,6 +90,7 @@ public class MainActivity extends BaseActivity implements HasSupportFragmentInje
                 break;
         }
 
+        currentFragment = fragment;
         loadFragment(getSupportFragmentManager(), fragment, R.id.main_fragment_container);
 
         return true;

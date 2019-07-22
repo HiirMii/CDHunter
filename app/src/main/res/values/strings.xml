@@ -61,4 +61,12 @@
 
     <string name="auth_sign_out">Sign out</string>
 
+    <string name="save_to_db">Add to collection</string>
+
+    <string name="album_ownership_status_collection">collection</string>
+    <string name="album_ownership_status_wishlist">wishlist</string>
+
+    <string name="artist_name">Artist name:</string>
+    <string name="album_name">Album name:</string>
+
 </resources>

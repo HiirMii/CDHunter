@@ -29,6 +29,18 @@
         tools:text="Artist name" />
 
     <Button
+        android:id="@+id/save_to_db_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:text="@string/save_to_db"
+        />
+
+    <Button
         android:id="@+id/auth_sign_out_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,6 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.65"
         android:text="@string/auth_sign_out"
         />
 

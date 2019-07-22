@@ -15,8 +15,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.android.cdhunter.R;
 import com.example.android.cdhunter.api.LastFmService;
+import com.example.android.cdhunter.db.CdHunterDb;
 import com.example.android.cdhunter.di.Injectable;
-import com.example.android.cdhunter.model.tag.TagResponse;
+import com.example.android.cdhunter.model.album.Album;
+import com.example.android.cdhunter.model.album.AlbumResponse;
 import com.example.android.cdhunter.ui.auth.AuthActivity;
 import com.example.android.cdhunter.utils.Constants;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -45,10 +47,16 @@ public class HomeFragment extends Fragment implements Injectable {
     private FirebaseUser firebaseUser;
     private GoogleSignInClient googleSignInClient;
 
+    private CdHunterDb db;
+
+    private Album album;
+
     @BindView(R.id.tv_home)
     TextView homeTextView;
     @BindView(R.id.tv_artist_name)
     TextView artistName;
+    @BindView(R.id.save_to_db_btn)
+    Button saveToDbButton;
     @BindView(R.id.auth_sign_out_btn)
     Button signOutButton;
 
@@ -72,7 +80,6 @@ public class HomeFragment extends Fragment implements Injectable {
         googleSignInClient = GoogleSignIn.getClient(Objects.requireNonNull(getContext()), gso);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         firebaseUser = firebaseAuth.getCurrentUser();
 
         assert firebaseUser != null;
@@ -93,22 +100,37 @@ public class HomeFragment extends Fragment implements Injectable {
 
         LastFmService lastFmService = retrofit.create(LastFmService.class);
 
-        Call<TagResponse> call = lastFmService.getTagTopArtists("Nu Metal", Constants.API_KEY);
+        Call<AlbumResponse> call = lastFmService.getAlbumInfo("Dream Theater",
+                "Awake", Constants.API_KEY);
 
-        call.enqueue(new Callback<TagResponse>() {
+        call.enqueue(new Callback<AlbumResponse>() {
             @Override
-            public void onResponse(@NotNull Call<TagResponse> call, @NotNull Response<TagResponse> response) {
-                TagResponse tagResponse = response.body();
-                assert tagResponse != null;
-                artistName.setText(tagResponse.getArtistListObject().getArtistList().get(0).getArtistName());
+            public void onResponse(@NotNull Call<AlbumResponse> call, @NotNull Response<AlbumResponse> response) {
+                AlbumResponse albumResponse = response.body();
+                assert albumResponse != null;
+
+                album = new Album(firebaseUser.getUid(),
+                        albumResponse.getAlbum().getAlbumName(),
+                        albumResponse.getAlbum().getArtistName(),
+                        albumResponse.getAlbum().getAlbumId(),
+                        albumResponse.getAlbum().getListOfImages(),
+                        albumResponse.getAlbum().getTrackList().getTrackList(),
+                        albumResponse.getAlbum().getWiki().getSummary(),
+                        getString(R.string.album_ownership_status_collection));
+
+                artistName.setText(albumResponse.getAlbum().getAlbumName());
 
             }
 
             @Override
-            public void onFailure(@NotNull Call<TagResponse> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<AlbumResponse> call, @NotNull Throwable t) {
                 Toast.makeText(getActivity(), "error occurred", Toast.LENGTH_SHORT).show();
             }
         });
+
+        db = CdHunterDb.getInstance(getContext());
+
+        saveToDbButton.setOnClickListener(v -> db.albumDao().insertSingleAlbum(album));
 
         signOutButton.setOnClickListener(v -> {
             firebaseAuth.signOut();

@@ -28,4 +28,9 @@ public class Image {
     public void setImageSize(String imageSize) {
         this.imageSize = imageSize;
     }
+
+    public Image(String imageUrl, String imageSize) {
+        this.imageUrl = imageUrl;
+        this.imageSize = imageSize;
+    }
 }

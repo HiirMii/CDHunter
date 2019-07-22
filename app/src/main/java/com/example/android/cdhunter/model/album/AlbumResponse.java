@@ -7,13 +7,13 @@ public class AlbumResponse {
 
     @SerializedName("album")
     @Expose
-    private AlbumInfo albumInfo;
+    private Album album;
 
-    public AlbumInfo getAlbumInfo() {
-        return albumInfo;
+    public Album getAlbum() {
+        return album;
     }
 
-    public void setAlbumInfo(AlbumInfo albumInfo) {
-        this.albumInfo = albumInfo;
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 }

@@ -7,13 +7,13 @@ public class ArtistResponse {
 
     @SerializedName("artist")
     @Expose
-    private ArtistInfo artistInfo;
+    private Artist artist;
 
-    public ArtistInfo getArtistInfo() {
-        return artistInfo;
+    public Artist getArtist() {
+        return artist;
     }
 
-    public void setArtistInfo(ArtistInfo artistInfo) {
-        this.artistInfo = artistInfo;
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 }
