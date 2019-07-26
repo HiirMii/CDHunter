@@ -9,13 +9,13 @@ public class TopAlbums {
 
     @SerializedName("album")
     @Expose
-    private List<Album> albumList = null;
+    private List<AlbumSummary> albumList = null;
 
-    public List<Album> getAlbumList() {
+    public List<AlbumSummary> getAlbumList() {
         return albumList;
     }
 
-    public void setAlbumList(List<Album> albumList) {
+    public void setAlbumList(List<AlbumSummary> albumList) {
         this.albumList = albumList;
     }
 }

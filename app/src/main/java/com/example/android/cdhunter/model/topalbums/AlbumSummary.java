@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Album {
+public class AlbumSummary {
 
     @SerializedName("name")
     @Expose
@@ -53,6 +53,13 @@ public class Album {
     }
 
     public void setImage(List<Image> image) {
+        this.image = image;
+    }
+
+    public AlbumSummary(String name, String albumId, Artist artist, List<Image> image) {
+        this.name = name;
+        this.albumId = albumId;
+        this.artist = artist;
         this.image = image;
     }
 }

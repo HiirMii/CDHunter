@@ -9,15 +9,18 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.android.cdhunter.R;
-import com.example.android.cdhunter.db.CdHunterDb;
 import com.example.android.cdhunter.di.Injectable;
-import com.example.android.cdhunter.model.album.Album;
+import com.example.android.cdhunter.viewmodel.ArtistViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,15 +30,13 @@ public class SearchFragment extends Fragment implements Injectable {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
 
-    private CdHunterDb db;
-
-    private Album album;
-
     @BindView(R.id.tv_artist_name)
     TextView artistName;
     @BindView(R.id.tv_album_name)
     TextView albumName;
 
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -59,12 +60,20 @@ public class SearchFragment extends Fragment implements Injectable {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        db = CdHunterDb.getInstance(getContext());
-        album = db.albumDao().getSingleAlbum(firebaseUser.getUid(), "e5544c68-43e9-4754-9239-b618454557f4");
-
-        if (album != null) {
-            artistName.setText(album.getArtistName());
-            albumName.setText(album.getAlbumName());
-        }
+        ArtistViewModel artistViewModel = ViewModelProviders.of(
+                this,viewModelFactory).get(ArtistViewModel.class);
+        artistViewModel.getArtist("Dream Theater", firebaseUser.getUid()).observe(
+                this, artist -> {
+                    if (artist != null) {
+                        artistName.setText(artist.getName());
+                    }
+                }
+        );
+        artistViewModel.getArtistTopAlbums("Dream Theater").observe(
+                this, albumSummaries -> {
+                    if (albumSummaries != null) {
+                        albumName.setText(albumSummaries.get(3).getName());
+                    }
+                });
     }
 }

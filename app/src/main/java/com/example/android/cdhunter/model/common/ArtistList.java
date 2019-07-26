@@ -9,13 +9,13 @@ public class ArtistList {
 
     @SerializedName("artist")
     @Expose
-    private List<Artist> artistList = null;
+    private List<ArtistSummary> artistList = null;
 
-    public List<Artist> getArtistList() {
+    public List<ArtistSummary> getArtistList() {
         return artistList;
     }
 
-    public void setArtistList(List<Artist> artistList) {
+    public void setArtistList(List<ArtistSummary> artistList) {
         this.artistList = artistList;
     }
 }

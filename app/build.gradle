@@ -38,6 +38,11 @@ dependencies {
     implementation "androidx.room:room-runtime:2.1.0"
     annotationProcessor "androidx.room:room-compiler:2.1.0"
 
+    // Lifecycle (ViewModel + LiveData)
+    implementation 'android.arch.lifecycle:runtime:2.0.0'
+    implementation 'android.arch.lifecycle:extensions:2.0.0'
+    annotationProcessor 'android.arch.lifecycle:compiler:2.0.0'
+
     // Firebase
     implementation 'com.google.firebase:firebase-core:17.0.1'
     implementation 'com.firebaseui:firebase-ui-auth:5.0.0'

@@ -8,4 +8,7 @@ public class Constants {
     // your last.fm api key goes here
     public static final String API_KEY = "api-key";
 
+    // ownership status constants
+    public static final String COLLECTION = "collection";
+    public static final String WISHLIST = "wishlist";
 }

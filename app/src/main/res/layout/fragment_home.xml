@@ -28,6 +28,17 @@
         app:layout_constraintVertical_bias="0.35"
         tools:text="Artist name" />
 
+    <TextView
+        android:id="@+id/tv_album_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:text="Album name" />
+
     <Button
         android:id="@+id/save_to_db_btn"
         android:layout_width="wrap_content"
@@ -36,7 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_bias="0.65"
         android:text="@string/save_to_db"
         />
 
@@ -48,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.65"
+        app:layout_constraintVertical_bias="0.8"
         android:text="@string/auth_sign_out"
         />
 
