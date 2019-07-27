@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.android.cdhunter.R;
 import com.example.android.cdhunter.di.Injectable;
+import com.example.android.cdhunter.utils.Constants;
 import com.example.android.cdhunter.viewmodel.AlbumViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,8 +32,14 @@ public class CollectionFragment extends Fragment implements Injectable {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
 
-    @BindView(R.id.tv_album_summary)
-    TextView albumSummary;
+    @BindView(R.id.collection_error_view)
+    View errorView;
+    @BindView(R.id.error_view_icon)
+    ImageView errorViewIcon;
+    @BindView(R.id.error_view_title)
+    TextView errorViewTitle;
+    @BindView(R.id.error_view_subtitle)
+    TextView errorViewSubtitle;
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -48,6 +56,9 @@ public class CollectionFragment extends Fragment implements Injectable {
         View view = inflater.inflate(R.layout.fragment_collection, container, false);
         ButterKnife.bind(this, view);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
         return view;
     }
 
@@ -55,17 +66,20 @@ public class CollectionFragment extends Fragment implements Injectable {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
+        AlbumViewModel albumViewModel = ViewModelProviders.of(this,
+                viewModelFactory).get(AlbumViewModel.class);
+        albumViewModel.getAlbumList(firebaseUser.getUid(), Constants.COLLECTION).observe(
+                this, albumList -> {
+                    if(albumList != null && !albumList.isEmpty()) {
 
-        AlbumViewModel albumViewModel = ViewModelProviders.of(
-                this, viewModelFactory).get(AlbumViewModel.class);
-        albumViewModel.getAlbum("Dream Theater", "Images And Words",
-                firebaseUser.getUid(), "4b5a4d0e-1268-4ed5-8b48-6d0740053813")
-                .observe(this, album -> {
-                    if (album != null) {
-                        albumSummary.setText(album.getAlbumSummary());
+                    } else {
+                        errorView.setVisibility(View.VISIBLE);
+                        errorViewIcon.setImageResource(R.drawable.ic_list_empty);
+                        errorViewTitle.setText(R.string.error_message_empty_collection_title);
+                        errorViewSubtitle.setText(R.string.error_message_empty_list_subtitle);
                     }
-                });
+                }
+        );
+
     }
 }

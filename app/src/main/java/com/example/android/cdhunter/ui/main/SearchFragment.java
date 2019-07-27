@@ -5,20 +5,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.android.cdhunter.R;
 import com.example.android.cdhunter.di.Injectable;
-import com.example.android.cdhunter.viewmodel.ArtistViewModel;
+import com.example.android.cdhunter.utils.NetworkConnection;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -30,10 +32,14 @@ public class SearchFragment extends Fragment implements Injectable {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
 
-    @BindView(R.id.tv_artist_name)
-    TextView artistName;
-    @BindView(R.id.tv_album_name)
-    TextView albumName;
+    @BindView(R.id.search_error_view)
+    View errorView;
+    @BindView(R.id.error_view_icon)
+    ImageView errorViewIcon;
+    @BindView(R.id.error_view_title)
+    TextView errorViewTitle;
+    @BindView(R.id.error_view_subtitle)
+    TextView errorViewSubtitle;
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -50,6 +56,9 @@ public class SearchFragment extends Fragment implements Injectable {
         View view =  inflater.inflate(R.layout.fragment_search, container, false);
         ButterKnife.bind(this, view);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
         return view;
     }
 
@@ -57,23 +66,11 @@ public class SearchFragment extends Fragment implements Injectable {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-
-        ArtistViewModel artistViewModel = ViewModelProviders.of(
-                this,viewModelFactory).get(ArtistViewModel.class);
-        artistViewModel.getArtist("Dream Theater", firebaseUser.getUid()).observe(
-                this, artist -> {
-                    if (artist != null) {
-                        artistName.setText(artist.getName());
-                    }
-                }
-        );
-        artistViewModel.getArtistTopAlbums("Dream Theater").observe(
-                this, albumSummaries -> {
-                    if (albumSummaries != null) {
-                        albumName.setText(albumSummaries.get(3).getName());
-                    }
-                });
+        if (!NetworkConnection.isConnected(Objects.requireNonNull(getContext()))) {
+            errorView.setVisibility(View.VISIBLE);
+            errorViewIcon.setImageResource(R.drawable.ic_no_wifi);
+            errorViewTitle.setText(R.string.error_message_no_internet_title);
+            errorViewSubtitle.setText(R.string.error_message_no_internet_subtitle);
+        }
     }
 }

@@ -22,7 +22,8 @@ public interface AlbumDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSingleAlbum(Album album);
 
-    @Query("SELECT * FROM albums WHERE userId = :userId AND ownershipStatus = :ownershipStatus")
+    @Query("SELECT * FROM albums WHERE userId = :userId AND ownershipStatus = :ownershipStatus " +
+            "ORDER BY artistName, albumName")
     LiveData<List<Album>> getAllAlbums(String userId, String ownershipStatus);
 
     @Query("SELECT * FROM albums WHERE userId = :userId AND albumId = :albumId")

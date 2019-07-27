@@ -8,6 +8,7 @@ import com.example.android.cdhunter.ui.main.CollectionFragment;
 import com.example.android.cdhunter.ui.main.HomeFragment;
 import com.example.android.cdhunter.ui.main.SearchFragment;
 import com.example.android.cdhunter.ui.main.WishlistFragment;
+import com.example.android.cdhunter.ui.profile.ProfileFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -40,4 +41,8 @@ public abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract AccountRecoveryFragment contributeAccountRecoveryFragment();
+
+    // profile activity
+    @ContributesAndroidInjector
+    abstract ProfileFragment contributeProfileFragment();
 }

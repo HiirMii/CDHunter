@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/error_view_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/error_message_image_description"
+        tools:src="@drawable/ic_no_wifi"/>
+
+    <TextView
+        android:id="@+id/error_view_title"
+        style="@style/auth_main_header"
+        android:layout_marginTop="@dimen/tiny_margin"
+        tools:text="@string/error_message_no_internet_title"/>
+
+    <TextView
+        android:id="@+id/error_view_subtitle"
+        style="@style/secondary_header"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_gravity="center"
+        tools:text="@string/error_message_no_internet_subtitle"/>
+
+</LinearLayout>

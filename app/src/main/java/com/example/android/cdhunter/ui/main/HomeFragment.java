@@ -6,21 +6,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.android.cdhunter.R;
 import com.example.android.cdhunter.di.Injectable;
-import com.example.android.cdhunter.ui.auth.AuthActivity;
-import com.example.android.cdhunter.viewmodel.SuggestionsViewModel;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.example.android.cdhunter.ui.profile.ProfileActivity;
+import com.example.android.cdhunter.utils.NetworkConnection;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -33,27 +29,24 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.android.cdhunter.ui.main.MainActivity.RC_SIGN_IN;
-
 public class HomeFragment extends Fragment implements Injectable {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private GoogleSignInClient googleSignInClient;
 
-    @BindView(R.id.tv_home)
-    TextView homeTextView;
-    @BindView(R.id.tv_artist_name)
-    TextView artistName;
-    @BindView(R.id.tv_album_name)
-    TextView albumName;
-    @BindView(R.id.save_to_db_btn)
-    Button saveToDbButton;
-    @BindView(R.id.auth_sign_out_btn)
-    Button signOutButton;
+    @BindView(R.id.iv_profile_icon)
+    ImageView profileIcon;
+    @BindView(R.id.home_error_view)
+    View errorView;
+    @BindView(R.id.error_view_icon)
+    ImageView errorViewIcon;
+    @BindView(R.id.error_view_title)
+    TextView errorViewTitle;
+    @BindView(R.id.error_view_subtitle)
+    TextView errorViewSubtitle;
 
-        @Inject
-        ViewModelProvider.Factory viewModelFactory;
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -67,18 +60,8 @@ public class HomeFragment extends Fragment implements Injectable {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        googleSignInClient = GoogleSignIn.getClient(Objects.requireNonNull(getContext()), gso);
-
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-
-        assert firebaseUser != null;
-        homeTextView.setText(String.format("Logged in as %s", firebaseUser.getDisplayName()));
 
         return view;
     }
@@ -87,29 +70,16 @@ public class HomeFragment extends Fragment implements Injectable {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-         SuggestionsViewModel suggestionsViewModel = ViewModelProviders.of(
-                this, viewModelFactory).get(SuggestionsViewModel.class);
-        suggestionsViewModel.getSimilarArtists(firebaseUser.getUid()).observe(
-                this, artistSummaries -> {
-                    if (artistSummaries != null) {
-                        artistName.setText(artistSummaries.get(0).getArtistName());
-                    }
-                });
-        suggestionsViewModel.getUserInterestTagTopArtists(firebaseUser.getUid()).observe(
-                this, artistSummaries -> {
-                    if (artistSummaries != null) {
-                        albumName.setText(artistSummaries.get(0).getArtistName());
-                    }
-                }
-        );
+        if (!NetworkConnection.isConnected(Objects.requireNonNull(getContext()))) {
+            errorView.setVisibility(View.VISIBLE);
+            errorViewIcon.setImageResource(R.drawable.ic_no_wifi);
+            errorViewTitle.setText(R.string.error_message_no_internet_title);
+            errorViewSubtitle.setText(R.string.error_message_no_internet_subtitle);
+        }
 
-        signOutButton.setOnClickListener(v -> {
-            firebaseAuth.signOut();
-            googleSignInClient.signOut().addOnCompleteListener(Objects.requireNonNull(getActivity()),
-                    task -> {
-                        Intent authIntent = new Intent(getActivity(), AuthActivity.class);
-                        startActivityForResult(authIntent, RC_SIGN_IN);
-                    });
+        profileIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ProfileActivity.class);
+            startActivity(intent);
         });
     }
 }

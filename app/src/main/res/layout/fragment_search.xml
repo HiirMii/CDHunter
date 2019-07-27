@@ -6,53 +6,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.SearchFragment">
 
-    <TextView
-        android:id="@+id/tv_search"
+    <include
+        android:id="@+id/search_error_view"
+        layout="@layout/item_error_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.2"
-        android:text="@string/bottom_nav_search" />
-
-    <TextView
-        android:id="@+id/tv_artist_name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="220dp"
-        android:text="@string/artist_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_album_name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/album_name"
-        app:layout_constraintStart_toStartOf="@+id/tv_artist_name_label"
-        app:layout_constraintTop_toBottomOf="@+id/tv_artist_name_label" />
-
-    <TextView
-        android:id="@+id/tv_artist_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_artist_name_label"
-        app:layout_constraintStart_toEndOf="@+id/tv_artist_name_label"
-        app:layout_constraintTop_toTopOf="@+id/tv_artist_name_label"
-        tools:text="Artist Name Data" />
-
-    <TextView
-        android:id="@+id/tv_album_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_album_name_label"
-        app:layout_constraintStart_toStartOf="@+id/tv_artist_name"
-        app:layout_constraintTop_toTopOf="@+id/tv_album_name_label"
-        tools:text="Album Name Data" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

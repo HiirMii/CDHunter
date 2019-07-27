@@ -6,27 +6,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.CollectionFragment">
 
-    <TextView
-        android:id="@+id/tv_collection"
+    <include
+        android:id="@+id/collection_error_view"
+        layout="@layout/item_error_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.2"
-        android:text="@string/bottom_nav_collection" />
-
-    <TextView
-        android:id="@+id/tv_album_summary"
-        android:layout_margin="@dimen/normal_margin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.5"
-        tools:text="Album Summary" />
+        app:layout_constraintHorizontal_bias="0.5"
+        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
