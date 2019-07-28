@@ -30,7 +30,8 @@
     <dimen name="double_margin">32dp</dimen>
     <dimen name="big_margin">24dp</dimen>
     <dimen name="normal_margin">16dp</dimen>
-    <dimen name="small_margin">8dp</dimen>
+    <dimen name="small_margin">12dp</dimen>
+    <dimen name="extra_small_margin">8dp</dimen>
     <dimen name="tiny_margin">4dp</dimen>
 
     <dimen name="suggestion_item_width">166dp</dimen>

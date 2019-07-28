@@ -9,7 +9,7 @@ import com.example.android.cdhunter.db.TagDao;
 import com.example.android.cdhunter.model.artist.Artist;
 import com.example.android.cdhunter.model.artist.ArtistResponse;
 import com.example.android.cdhunter.model.artist.SimilarArtist;
-import com.example.android.cdhunter.model.artist.Tag;
+import com.example.android.cdhunter.model.common.Tag;
 import com.example.android.cdhunter.utils.Constants;
 
 import java.util.ArrayList;

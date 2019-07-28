@@ -10,8 +10,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="6"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginBottom="@dimen/small_margin"
+        android:layout_marginTop="@dimen/extra_small_margin"
+        android:layout_marginBottom="@dimen/extra_small_margin"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
         android:maxLines="2"
@@ -23,8 +23,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginTop="@dimen/small_margin"
-        android:layout_marginBottom="@dimen/small_margin"
+        android:layout_marginTop="@dimen/extra_small_margin"
+        android:layout_marginBottom="@dimen/extra_small_margin"
         android:layout_marginEnd="@dimen/big_margin"
         tools:text="@string/track_duration"/>
 

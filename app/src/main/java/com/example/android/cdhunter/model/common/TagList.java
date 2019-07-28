@@ -1,4 +1,4 @@
-package com.example.android.cdhunter.model.artist;
+package com.example.android.cdhunter.model.common;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

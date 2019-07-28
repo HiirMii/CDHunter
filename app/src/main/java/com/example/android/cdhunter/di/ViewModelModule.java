@@ -3,6 +3,7 @@ package com.example.android.cdhunter.di;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.android.cdhunter.viewmodel.SearchViewModel;
 import com.example.android.cdhunter.viewmodel.SuggestionsViewModel;
 import com.example.android.cdhunter.viewmodel.AlbumViewModel;
 import com.example.android.cdhunter.viewmodel.ArtistViewModel;
@@ -29,6 +30,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ArtistViewModel.class)
     abstract ViewModel bindsArtistViewModel(ArtistViewModel artistViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel.class)
+    abstract ViewModel bindsSearchViewModel(SearchViewModel searchViewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindsViewModelFactory(CdHunterViewModelFactory factory);

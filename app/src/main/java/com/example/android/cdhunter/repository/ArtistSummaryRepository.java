@@ -7,7 +7,7 @@ import com.example.android.cdhunter.api.LastFmService;
 import com.example.android.cdhunter.db.SimilarArtistDao;
 import com.example.android.cdhunter.db.TagDao;
 import com.example.android.cdhunter.model.artist.SimilarArtist;
-import com.example.android.cdhunter.model.artist.Tag;
+import com.example.android.cdhunter.model.common.Tag;
 import com.example.android.cdhunter.model.chart.ChartResponse;
 import com.example.android.cdhunter.model.common.ArtistSummary;
 import com.example.android.cdhunter.model.search.SearchResponse;

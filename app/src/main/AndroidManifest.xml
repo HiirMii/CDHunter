@@ -15,13 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.album.AlbumActivity"></activity>
+        <activity android:name=".ui.searchresults.SearchResultsActivity"/>
+        <activity android:name=".ui.album.AlbumActivity" />
         <activity android:name=".ui.artist.ArtistActivity" />
         <activity android:name=".ui.profile.ProfileActivity" />
         <activity
             android:name=".ui.auth.AuthActivity"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

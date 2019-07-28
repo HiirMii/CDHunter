@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/collection_list_item_image_size"
+    android:layout_margin="@dimen/tiny_margin"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardCornerRadius="@dimen/normal_margin"
+    app:strokeColor="@color/colorAccent"
+    app:strokeWidth="@dimen/tiny_margin">
+
+    <TextView
+        android:id="@+id/tv_tag"
+        style="@style/error_view_title"
+        tools:text="@string/tag" />
+
+</com.google.android.material.card.MaterialCardView>

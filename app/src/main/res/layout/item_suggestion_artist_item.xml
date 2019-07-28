@@ -9,7 +9,7 @@
         android:id="@+id/iv_suggestions_list_artist_item_image"
         android:layout_width="@dimen/suggestion_list_item_image_size"
         android:layout_height="@dimen/suggestion_list_item_image_size"
-        android:layout_margin="@dimen/small_margin"
+        android:layout_margin="@dimen/extra_small_margin"
         android:contentDescription="@string/image_description_artist"
         tools:src="@drawable/album_cover" />
 
@@ -18,8 +18,8 @@
         style="@style/suggestion_list_item_title"
         android:layout_gravity="center"
         android:gravity="center"
-        android:paddingStart="@dimen/small_margin"
-        android:paddingEnd="@dimen/small_margin"
+        android:paddingStart="@dimen/extra_small_margin"
+        android:paddingEnd="@dimen/extra_small_margin"
         tools:text="@string/artist_name" />
 
 </LinearLayout>

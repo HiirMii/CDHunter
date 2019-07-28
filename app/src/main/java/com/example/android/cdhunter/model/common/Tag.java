@@ -1,4 +1,4 @@
-package com.example.android.cdhunter.model.artist;
+package com.example.android.cdhunter.model.common;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

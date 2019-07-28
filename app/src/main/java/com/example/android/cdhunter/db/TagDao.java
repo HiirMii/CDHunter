@@ -5,7 +5,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.android.cdhunter.model.artist.Tag;
+import com.example.android.cdhunter.model.common.Tag;
 
 import java.util.List;
 

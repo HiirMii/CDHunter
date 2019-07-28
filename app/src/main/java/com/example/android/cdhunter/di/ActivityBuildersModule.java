@@ -5,6 +5,7 @@ import com.example.android.cdhunter.ui.artist.ArtistActivity;
 import com.example.android.cdhunter.ui.auth.AuthActivity;
 import com.example.android.cdhunter.ui.main.MainActivity;
 import com.example.android.cdhunter.ui.profile.ProfileActivity;
+import com.example.android.cdhunter.ui.searchresults.SearchResultsActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -21,4 +22,6 @@ public abstract class ActivityBuildersModule {
     abstract ArtistActivity contributeArtistActivity();
     @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
     abstract AlbumActivity contributeAlbumActivity();
+    @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
+    abstract SearchResultsActivity contributeSearchResultsActivity();
 }

@@ -1,6 +1,7 @@
 package com.example.android.cdhunter.model.artist;
 
 import com.example.android.cdhunter.model.common.Image;
+import com.example.android.cdhunter.model.common.TagList;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

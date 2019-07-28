@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.android.cdhunter.model.album.Album;
 import com.example.android.cdhunter.model.artist.SimilarArtist;
-import com.example.android.cdhunter.model.artist.Tag;
+import com.example.android.cdhunter.model.common.Tag;
 
 /**
  * Main database description.

@@ -99,7 +99,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginTop">@dimen/small_margin</item>
+        <item name="android:layout_marginTop">@dimen/extra_small_margin</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/standard_text_size</item>
     </style>
@@ -145,8 +145,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingTop">@dimen/normal_margin</item>
         <item name="android:paddingBottom">@dimen/normal_margin</item>
-        <item name="android:paddingStart">@dimen/small_margin</item>
-        <item name="android:paddingEnd">@dimen/small_margin</item>
+        <item name="android:paddingStart">@dimen/extra_small_margin</item>
+        <item name="android:paddingEnd">@dimen/extra_small_margin</item>
     </style>
 
 </resources>

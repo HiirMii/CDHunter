@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/iv_collection_list_double_textview_item_image"
-        android:layout_margin="@dimen/small_margin"
+        android:layout_margin="@dimen/extra_small_margin"
         tools:src="@drawable/album_cover"
         android:layout_width="@dimen/collection_list_item_image_size"
         android:layout_height="@dimen/collection_list_item_image_size" />

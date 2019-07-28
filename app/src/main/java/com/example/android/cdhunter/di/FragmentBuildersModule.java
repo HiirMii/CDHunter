@@ -11,6 +11,7 @@ import com.example.android.cdhunter.ui.main.HomeFragment;
 import com.example.android.cdhunter.ui.main.SearchFragment;
 import com.example.android.cdhunter.ui.main.WishlistFragment;
 import com.example.android.cdhunter.ui.profile.ProfileFragment;
+import com.example.android.cdhunter.ui.searchresults.SearchResultsFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -55,4 +56,8 @@ public abstract class FragmentBuildersModule {
     // album activity fragment
     @ContributesAndroidInjector
     abstract AlbumFragment contributeAlbumFragment();
+
+    // search results fragment
+    @ContributesAndroidInjector
+    abstract SearchResultsFragment contributeSearchResultsFragment();
 }

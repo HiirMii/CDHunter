@@ -7,6 +7,7 @@ import com.example.android.cdhunter.model.search.SearchResponse;
 import com.example.android.cdhunter.model.similar.SimilarResponse;
 import com.example.android.cdhunter.model.tag.TagResponse;
 import com.example.android.cdhunter.model.topalbums.TopAlbumsResponse;
+import com.example.android.cdhunter.model.toptags.TopTagsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -53,6 +54,11 @@ public interface LastFmService {
     @GET("?method=artist.gettopalbums&format=json")
     Call<TopAlbumsResponse> getArtistTopAlbums(
             @Query("artist") String artistName,
+            @Query("api_key") String apiKey
+    );
+
+    @GET("?method=tag.getTopTags&format=json")
+    Call<TopTagsResponse> getTopTags(
             @Query("api_key") String apiKey
     );
 }
