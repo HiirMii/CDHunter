@@ -32,6 +32,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import timber.log.Timber;
 
 public class LogInFragment extends Fragment implements Injectable {
@@ -57,6 +58,8 @@ public class LogInFragment extends Fragment implements Injectable {
     @BindView(R.id.auth_log_in_password_input)
     TextInputEditText passwordInput;
 
+    private Unbinder unbinder;
+
 
     public LogInFragment() {
         // Required empty public constructor
@@ -68,7 +71,7 @@ public class LogInFragment extends Fragment implements Injectable {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_log_in, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         return view;
     }
@@ -153,5 +156,11 @@ public class LogInFragment extends Fragment implements Injectable {
         }
 
         return valid;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

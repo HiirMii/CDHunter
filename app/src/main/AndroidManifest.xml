@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.profile.ProfileActivity"></activity>
+        <activity android:name=".ui.album.AlbumActivity"></activity>
+        <activity android:name=".ui.artist.ArtistActivity" />
+        <activity android:name=".ui.profile.ProfileActivity" />
         <activity
             android:name=".ui.auth.AuthActivity"
             android:windowSoftInputMode="adjustNothing" />

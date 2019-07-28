@@ -26,11 +26,13 @@ public interface AlbumDao {
             "ORDER BY artistName, albumName")
     LiveData<List<Album>> getAllAlbums(String userId, String ownershipStatus);
 
-    @Query("SELECT * FROM albums WHERE userId = :userId AND albumId = :albumId")
-    LiveData<Album> getSingleAlbum(String userId, String albumId);
+    @Query("SELECT * FROM albums WHERE userId = :userId AND artistName = :artistName "
+            + "AND albumName = :albumName")
+    LiveData<Album> getSingleAlbum(String userId, String artistName, String albumName);
 
-    @Query("SELECT * FROM albums WHERE userId = :userId AND albumId = :albumId LIMIT 1")
-    Album checkIfAlbumExists(String userId, String albumId);
+    @Query("SELECT * FROM albums WHERE userId = :userId AND artistName = :artistName "
+            + "AND albumName = :albumName LIMIT 1")
+    Album checkIfAlbumExists(String userId, String artistName, String albumName);
 
     @Query("UPDATE albums SET ownershipStatus = :ownershipStatus WHERE userId = :userId AND albumId = :albumId")
     void updateSingleAlbumOwnershipStatus(String userId, String albumId, String ownershipStatus);

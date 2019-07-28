@@ -32,6 +32,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class ProfileFragment extends Fragment implements Injectable {
 
@@ -50,6 +51,8 @@ public class ProfileFragment extends Fragment implements Injectable {
     @BindView(R.id.profile_log_out_btn)
     MaterialButton logOutButton;
 
+    private Unbinder unbinder;
+
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
@@ -63,7 +66,7 @@ public class ProfileFragment extends Fragment implements Injectable {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -117,5 +120,11 @@ public class ProfileFragment extends Fragment implements Injectable {
                         startActivity(intent);
             });
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

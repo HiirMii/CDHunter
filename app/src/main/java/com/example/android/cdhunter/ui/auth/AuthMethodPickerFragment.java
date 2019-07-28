@@ -32,6 +32,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import timber.log.Timber;
 
 public class AuthMethodPickerFragment extends Fragment implements Injectable {
@@ -50,6 +51,8 @@ public class AuthMethodPickerFragment extends Fragment implements Injectable {
     @BindView(R.id.login_btn)
     MaterialButton loginButton;
 
+    private Unbinder unbinder;
+
     public AuthMethodPickerFragment() {
         // Required empty public constructor
     }
@@ -60,7 +63,7 @@ public class AuthMethodPickerFragment extends Fragment implements Injectable {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_auth_method_picker, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -135,5 +138,11 @@ public class AuthMethodPickerFragment extends Fragment implements Injectable {
                         Toast.makeText(getContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

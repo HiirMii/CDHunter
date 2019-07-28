@@ -26,6 +26,7 @@ public class AlbumRepository {
     private final AlbumDao albumDao;
     private final LastFmService lastFmService;
 
+    private String albumSummary;
 
     @Inject
     public AlbumRepository(AppExecutors appExecutors, AlbumDao albumDao,
@@ -35,17 +36,17 @@ public class AlbumRepository {
         this.lastFmService = lastFmService;
     }
 
-    public LiveData<Album> getAlbum(String artistName, String albumName, String userId, String albumId) {
-        refreshAlbum(artistName, albumName, userId, albumId);
-        return albumDao.getSingleAlbum(userId, albumId);
+    public LiveData<Album> getAlbum(String userId, String artistName, String albumName) {
+        refreshAlbum(userId, artistName, albumName);
+        return albumDao.getSingleAlbum(userId, artistName, albumName);
     }
 
-    private void refreshAlbum(String artistName, String albumName, String userId, String albumId) {
+    private void refreshAlbum(String userId, String artistName, String albumName) {
         appExecutors.diskIO().execute(() -> {
-            boolean albumExists = (albumDao.checkIfAlbumExists(userId, albumId) != null);
+            boolean albumExists = (albumDao.checkIfAlbumExists(userId, artistName, albumName) != null);
             if (albumExists) {
                 // if album exists in db I have to maintain current ownership status manually
-                String ownershipStatus = albumDao.checkIfAlbumExists(userId, albumId).getOwnershipStatus();
+                String ownershipStatus = albumDao.checkIfAlbumExists(userId, artistName, albumName).getOwnershipStatus();
                 appExecutors.networkIO().execute(() ->
                         lastFmService.getAlbumInfo(artistName, albumName, Constants.API_KEY)
                                 .enqueue(new Callback<AlbumResponse>() {
@@ -54,6 +55,11 @@ public class AlbumRepository {
                                         appExecutors.diskIO().execute(() -> {
                                             AlbumResponse albumResponse = response.body();
                                             assert albumResponse != null;
+                                            if (albumResponse.getAlbum().getWiki() == null) {
+                                                albumSummary = "No album summary available";
+                                            } else {
+                                                albumSummary = albumResponse.getAlbum().getWiki().getSummary();
+                                            }
                                             Album album = new Album(
                                                     userId,
                                                     albumResponse.getAlbum().getAlbumName(),
@@ -61,7 +67,7 @@ public class AlbumRepository {
                                                     albumResponse.getAlbum().getAlbumId(),
                                                     albumResponse.getAlbum().getListOfImages(),
                                                     albumResponse.getAlbum().getTrackList().getTrackList(),
-                                                    albumResponse.getAlbum().getWiki().getSummary(),
+                                                    albumSummary,
                                                     ownershipStatus
                                             );
                                             albumDao.insertSingleAlbum(album);
@@ -82,6 +88,11 @@ public class AlbumRepository {
                                         appExecutors.diskIO().execute(() -> {
                                             AlbumResponse albumResponse = response.body();
                                             assert albumResponse != null;
+                                            if (albumResponse.getAlbum().getWiki() == null) {
+                                                albumSummary = "No album summary available";
+                                            } else {
+                                                albumSummary = albumResponse.getAlbum().getWiki().getSummary();
+                                            }
                                             Album album = new Album(
                                                     userId,
                                                     albumResponse.getAlbum().getAlbumName(),
@@ -89,7 +100,7 @@ public class AlbumRepository {
                                                     albumResponse.getAlbum().getAlbumId(),
                                                     albumResponse.getAlbum().getListOfImages(),
                                                     albumResponse.getAlbum().getTrackList().getTrackList(),
-                                                    albumResponse.getAlbum().getWiki().getSummary(),
+                                                    albumSummary,
                                                     ""
                                             );
                                             albumDao.insertSingleAlbum(album);

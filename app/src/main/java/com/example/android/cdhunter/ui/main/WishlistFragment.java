@@ -34,11 +34,11 @@ public class WishlistFragment extends Fragment implements Injectable {
 
     @BindView(R.id.wishlist_error_view)
     View errorView;
-    @BindView(R.id.error_view_icon)
+    @BindView(R.id.iv_error_view_icon)
     ImageView errorViewIcon;
-    @BindView(R.id.error_view_title)
+    @BindView(R.id.tv_error_view_title)
     TextView errorViewTitle;
-    @BindView(R.id.error_view_subtitle)
+    @BindView(R.id.tv_error_view_subtitle)
     TextView errorViewSubtitle;
 
     @Inject

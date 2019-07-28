@@ -28,6 +28,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import timber.log.Timber;
 
 public class AccountRecoveryFragment extends Fragment implements Injectable {
@@ -45,6 +46,8 @@ public class AccountRecoveryFragment extends Fragment implements Injectable {
     @BindView(R.id.auth_account_recovery_submit_btn)
     MaterialButton recoveryBtn;
 
+    private Unbinder unbinder;
+
     public AccountRecoveryFragment() {
         // Required empty public constructor
     }
@@ -55,7 +58,7 @@ public class AccountRecoveryFragment extends Fragment implements Injectable {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_account_recovery, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         return view;
     }
@@ -115,5 +118,11 @@ public class AccountRecoveryFragment extends Fragment implements Injectable {
         }
 
         return valid;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

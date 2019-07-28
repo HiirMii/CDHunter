@@ -24,8 +24,8 @@ public class AlbumViewModel extends ViewModel {
         this.albumRepository = albumRepository;
     }
 
-    public LiveData<Album> getAlbum(String artistName, String albumName, String userId, String albumId) {
-        return albumRepository.getAlbum(artistName, albumName, userId, albumId);
+    public LiveData<Album> getAlbum(String userId, String artistName, String albumName) {
+        return albumRepository.getAlbum(userId, artistName, albumName);
     }
 
     public LiveData<List<Album>> getAlbumList(String userId, String ownershipStatus) {

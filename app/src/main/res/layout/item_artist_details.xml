@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_artist_image"
+        android:layout_width="@dimen/item_image_size"
+        android:layout_height="@dimen/item_image_size"
+        android:layout_marginTop="@dimen/huge_margin"
+        android:contentDescription="@string/image_description_artist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/album_cover" />
+
+    <TextView
+        android:id="@+id/tv_artist_name"
+        style="@style/auth_main_header"
+        android:layout_marginStart="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginEnd="@dimen/normal_margin"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_artist_image"
+        tools:text="@string/artist_name" />
+
+    <TextView
+        android:id="@+id/tv_artist_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
+        android:paddingStart="@dimen/normal_margin"
+        android:paddingEnd="@dimen/normal_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_artist_name"
+        tools:text="@string/summary_text" />
+
+    <TextView
+        android:id="@+id/tv_top_albums_label"
+        style="@style/error_view_title"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/big_margin"
+        android:layout_marginEnd="8dp"
+        android:text="@string/artist_top_albums_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_artist_summary" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_artist_top_album_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_margin"
+        android:paddingBottom="@dimen/normal_margin"
+        app:layout_constraintTop_toBottomOf="@+id/tv_top_albums_label"
+        tools:itemCount="1"
+        tools:listitem="@layout/item_collection_single_textview_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

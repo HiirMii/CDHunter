@@ -44,4 +44,157 @@
         app:layout_constraintHorizontal_bias="0.5"
         android:visibility="invisible"/>
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/home_main_view"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/chart_list_layout"
+                android:layout_marginTop="@dimen/huge_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_chart_list_layout_title"
+                    style="@style/collection_list_item_title"
+                    android:layout_gravity="center"
+                    android:text="@string/chart_list_layout_title"/>
+
+                <TextView
+                    android:id="@+id/tv_chart_list_layout_subtitle"
+                    style="@style/collection_list_item_subtitle"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/auth_helper_text"
+                    android:text="@string/chart_list_layout_subtitle"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_chart_list"
+                    style="@style/horizontal_recycler_view"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_suggestion_artist_item"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/similar_artist_list_layout"
+                android:layout_marginTop="@dimen/big_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_similar_artist_list_layout_title"
+                    style="@style/collection_list_item_title"
+                    android:layout_gravity="center"
+                    android:text="@string/similar_artist_list_layout_title"/>
+
+                <TextView
+                    android:id="@+id/tv_similar_artist_list_layout_subtitle"
+                    style="@style/collection_list_item_subtitle"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/auth_helper_text"
+                    android:text="@string/similar_artist_list_layout_subtitle"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_similar_artist_list"
+                    style="@style/horizontal_recycler_view"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_suggestion_artist_item"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tag_top_artist_list_layout"
+                android:layout_marginTop="@dimen/big_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_tag_top_artist_list_layout_title"
+                    style="@style/collection_list_item_title"
+                    android:layout_gravity="center"
+                    android:text="@string/tag_top_artist_list_layout_title"/>
+
+                <TextView
+                    android:id="@+id/tv_tag_top_artist_list_layout_subtitle"
+                    style="@style/collection_list_item_subtitle"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/auth_helper_text"
+                    android:text="@string/tag_top_artist_list_layout_subtitle"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_tag_top_artist_list"
+                    style="@style/horizontal_recycler_view"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_suggestion_artist_item"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/similar_artist_top_albums_list_layout"
+                android:layout_marginTop="@dimen/big_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_similar_artist_top_albums_list_layout_title"
+                    style="@style/collection_list_item_title"
+                    android:layout_gravity="center"
+                    android:text="@string/similar_artist_top_albums_layout_title"/>
+
+                <TextView
+                    android:id="@+id/tv_similar_artist_top_albums_list_layout_subtitle"
+                    style="@style/collection_list_item_subtitle"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/auth_helper_text"
+                    android:text="@string/similar_artist_top_albums_layout_subtitle"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_similar_artist_top_albums_list"
+                    style="@style/horizontal_recycler_view"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_suggestion_artist_item"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/encouraging_text_layout"
+                android:layout_marginTop="@dimen/big_margin"
+                android:layout_marginBottom="@dimen/huge_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_encouraging_text_title"
+                    style="@style/collection_list_item_title"
+                    android:layout_gravity="center"
+                    android:text="@string/encouraging_text_title"/>
+
+                <TextView
+                    android:id="@+id/tv_encouraging_text_subtitle"
+                    style="@style/collection_list_item_subtitle"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/auth_helper_text"
+                    android:text="@string/encouraging_text_subtitle"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

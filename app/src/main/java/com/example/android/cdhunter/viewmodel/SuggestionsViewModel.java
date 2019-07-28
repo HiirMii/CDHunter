@@ -29,8 +29,8 @@ public class SuggestionsViewModel extends ViewModel {
         this.artistSummaryRepository = artistSummaryRepository;
     }
 
-    public LiveData<List<AlbumSummary>> getArtistTopAlbums(String artistName) {
-        return albumSummaryRepository.getArtistTopAlbums(artistName);
+    public LiveData<List<AlbumSummary>> getUserInterestArtistTopAlbums(String userId) {
+        return albumSummaryRepository.getUserInterestArtistTopAlbums(userId);
     }
 
     public LiveData<List<ArtistSummary>> getSimilarArtists(String userId) {
