@@ -49,6 +49,8 @@ public class SearchResultsFragment extends Fragment implements Injectable,
 
     @BindView(R.id.search_results_toolbar)
     Toolbar toolbar;
+    @BindView(R.id.tv_search_results_label)
+    TextView searchResultsLabel;
     @BindView(R.id.search_results_main_view)
     NestedScrollView searchResultsMainView;
     @BindView(R.id.search_results_error_view)
@@ -97,6 +99,7 @@ public class SearchResultsFragment extends Fragment implements Injectable,
         toolbar.setNavigationOnClickListener(v -> Objects.requireNonNull(getActivity()).onBackPressed());
 
         if (!NetworkConnection.isConnected(Objects.requireNonNull(getContext()))) {
+            searchResultsLabel.setVisibility(View.GONE);
             searchResultsMainView.setVisibility(View.GONE);
             errorView.setVisibility(View.VISIBLE);
             errorViewIcon.setImageResource(R.drawable.ic_no_wifi);

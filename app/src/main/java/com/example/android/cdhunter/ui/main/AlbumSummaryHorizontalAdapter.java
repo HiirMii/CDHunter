@@ -19,7 +19,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AlbumSummaryHorizontalAdapter extends RecyclerView.Adapter<AlbumSummaryHorizontalAdapter.AlbumSummaryViewHolder> {
+public class AlbumSummaryHorizontalAdapter extends
+        RecyclerView.Adapter<AlbumSummaryHorizontalAdapter.AlbumSummaryViewHolder> {
 
     private final AlbumSummaryAdapterOnClickHandler albumSummaryAdapterOnClickHandler;
     private List<AlbumSummary> albumSummaryList;

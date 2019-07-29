@@ -25,7 +25,7 @@
             tools:text="@string/album_name"/>
 
         <TextView
-            android:id="@+id/tv_collection_list_item_artist_name"
+            android:id="@+id/tv_collection_list_double_textview_item_artist_name"
             style="@style/collection_list_item_subtitle"
             tools:text="@string/artist_name"/>
 

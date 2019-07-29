@@ -57,6 +57,8 @@ public class SearchFragment extends Fragment implements Injectable,
     EditText searchEditText;
     @BindView(R.id.iv_search_icon)
     ImageView searchIcon;
+    @BindView(R.id.tv_search_label)
+    TextView searchLabel;
     @BindView(R.id.search_main_view)
     NestedScrollView searchMainView;
     @BindView(R.id.search_error_view)
@@ -99,6 +101,8 @@ public class SearchFragment extends Fragment implements Injectable,
 
         if (!NetworkConnection.isConnected(Objects.requireNonNull(getContext()))) {
             searchEditText.setVisibility(View.GONE);
+            searchIcon.setVisibility(View.GONE);
+            searchLabel.setVisibility(View.GONE);
             searchMainView.setVisibility(View.GONE);
             errorView.setVisibility(View.VISIBLE);
             errorViewIcon.setImageResource(R.drawable.ic_no_wifi);

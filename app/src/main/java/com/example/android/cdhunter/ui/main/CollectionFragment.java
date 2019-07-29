@@ -1,6 +1,7 @@
 package com.example.android.cdhunter.ui.main;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.cdhunter.R;
 import com.example.android.cdhunter.di.Injectable;
+import com.example.android.cdhunter.model.album.Album;
+import com.example.android.cdhunter.ui.album.AlbumActivity;
 import com.example.android.cdhunter.utils.Constants;
 import com.example.android.cdhunter.viewmodel.AlbumViewModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,12 +27,19 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
-public class CollectionFragment extends Fragment implements Injectable {
+public class CollectionFragment extends Fragment implements Injectable,
+        AlbumAdapter.AlbumAdapterOnClickHandler {
+
+    private static final String ARTIST_NAME = "artistName";
+    private static final String ALBUM_NAME = "albumName";
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
@@ -40,6 +52,14 @@ public class CollectionFragment extends Fragment implements Injectable {
     TextView errorViewTitle;
     @BindView(R.id.tv_error_view_subtitle)
     TextView errorViewSubtitle;
+    @BindView(R.id.tv_collection_label)
+    TextView collectionLabel;
+    @BindView(R.id.rv_collection)
+    RecyclerView collectionListRecyclerView;
+
+    private Unbinder unbinder;
+
+    AlbumViewModel albumViewModel;
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -54,7 +74,7 @@ public class CollectionFragment extends Fragment implements Injectable {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_collection, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -66,13 +86,17 @@ public class CollectionFragment extends Fragment implements Injectable {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        AlbumViewModel albumViewModel = ViewModelProviders.of(this,
+        albumViewModel = ViewModelProviders.of(this,
                 viewModelFactory).get(AlbumViewModel.class);
         albumViewModel.getAlbumList(firebaseUser.getUid(), Constants.COLLECTION).observe(
                 this, albumList -> {
                     if(albumList != null && !albumList.isEmpty()) {
-
+                        collectionLabel.setVisibility(View.VISIBLE);
+                        collectionListRecyclerView.setVisibility(View.VISIBLE);
+                        setAlbumData(albumList);
                     } else {
+                        collectionLabel.setVisibility(View.INVISIBLE);
+                        collectionListRecyclerView.setVisibility(View.INVISIBLE);
                         errorView.setVisibility(View.VISIBLE);
                         errorViewIcon.setImageResource(R.drawable.ic_list_empty);
                         errorViewTitle.setText(R.string.error_message_empty_collection_title);
@@ -80,6 +104,33 @@ public class CollectionFragment extends Fragment implements Injectable {
                     }
                 }
         );
+    }
 
+    @Override
+    public void onAlbumClick(String artistName, String albumName) {
+        Intent intent = new Intent(getActivity(), AlbumActivity.class);
+        intent.putExtra(ARTIST_NAME, artistName);
+        intent.putExtra(ALBUM_NAME, albumName);
+        startActivity(intent);
+    }
+
+    public void setAlbumData(List<Album> albumData) {
+        LinearLayoutManager albumListLayoutManager = new LinearLayoutManager(getActivity());
+        collectionListRecyclerView.setLayoutManager(albumListLayoutManager);
+        collectionListRecyclerView.setHasFixedSize(true);
+        AlbumAdapter albumAdapter = new AlbumAdapter(this);
+        collectionListRecyclerView.setAdapter(albumAdapter);
+        albumAdapter.setAlbumList(albumData);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

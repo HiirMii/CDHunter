@@ -26,6 +26,7 @@
     <dimen name="auth_helper_text">10sp</dimen>
 
     //margins
+    <dimen name="label_top_margin">130dp</dimen>
     <dimen name="huge_margin">60dp</dimen>
     <dimen name="double_margin">32dp</dimen>
     <dimen name="big_margin">24dp</dimen>

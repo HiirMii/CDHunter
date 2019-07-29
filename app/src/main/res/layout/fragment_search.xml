@@ -45,27 +45,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
 
+    <TextView
+        android:id="@+id/tv_search_label"
+        style="@style/auth_main_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normal_margin"
+        android:text="@string/tag_list_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_search"/>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/search_main_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginTop="@dimen/label_top_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_search">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/secondary_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/auth_label_size"
-                android:layout_margin="@dimen/normal_margin"
-                android:text="@string/tag_list_label" />
+        app:layout_constraintTop_toBottomOf="@id/tv_search_label">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_tag_list"
@@ -74,8 +72,6 @@
                 android:layout_marginStart="@dimen/normal_margin"
                 android:layout_marginEnd="@dimen/normal_margin"
                 tools:listitem="@layout/item_tag_list_item" />
-
-        </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 

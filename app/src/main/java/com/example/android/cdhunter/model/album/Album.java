@@ -1,8 +1,8 @@
 package com.example.android.cdhunter.model.album;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.example.android.cdhunter.db.ImageConverter;
@@ -13,18 +13,18 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-@Entity(tableName = "albums")
+@Entity(tableName = "albums", primaryKeys = {"userId", "albumName", "artistName"})
 public class Album {
 
-    @PrimaryKey(autoGenerate = true)
-    private int entityId;
-
+    @NonNull
     private String userId;
 
+    @NonNull
     @SerializedName("name")
     @Expose
     private String albumName;
 
+    @NonNull
     @SerializedName("artist")
     @Expose
     private String artistName;
@@ -54,14 +54,6 @@ public class Album {
     private Wiki wiki;
 
     private String ownershipStatus;
-
-    public int getEntityId() {
-        return entityId;
-    }
-
-    public void setEntityId(int entityId) {
-        this.entityId = entityId;
-    }
 
     public String getUserId() {
         return userId;

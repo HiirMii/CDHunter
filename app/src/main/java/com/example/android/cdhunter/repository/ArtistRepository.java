@@ -62,7 +62,7 @@ public class ArtistRepository {
                                 similarArtistDao.insertAllSimilarArtists(similarArtistList);
 
                                 tagList = artist.getTagListObject().getTagList();
-                                addUserIdToTag(userId, tagList);
+                                addUserIdAndArtistNameToTag(userId, artistName, tagList);
                                 tagDao.insertAllTags(tagList);
                             });
                         }
@@ -80,14 +80,15 @@ public class ArtistRepository {
     // add userId to every SimilarArtist object
     public void addUserIdAndArtistNameToSimilarArtist(String userId,String artistName, List<SimilarArtist> similarArtistList) {
         for (int i = 0; i < similarArtistList.size(); i++) {
-            similarArtistList.get(i).setArtistName(artistName);
             similarArtistList.get(i).setUserId(userId);
+            similarArtistList.get(i).setArtistName(artistName);
         }
     }
 
-    public void addUserIdToTag(String userId, List<Tag> tagList) {
+    public void addUserIdAndArtistNameToTag(String userId, String artistName, List<Tag> tagList) {
         for (int i = 0; i < tagList.size(); i++) {
             tagList.get(i).setUserId(userId);
+            tagList.get(i).setArtistName(artistName);
         }
     }
 }

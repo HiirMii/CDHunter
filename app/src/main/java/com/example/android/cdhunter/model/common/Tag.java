@@ -1,32 +1,24 @@
 package com.example.android.cdhunter.model.common;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Entity(tableName = "tags")
+@Entity(tableName = "tags", primaryKeys = {"userId", "artistName", "tagName"})
 public class Tag {
 
-    @PrimaryKey(autoGenerate = true)
-    private int entityId;
-
+    @NonNull
     private String userId;
 
+    @NonNull
     private String artistName;
 
+    @NonNull
     @SerializedName("name")
     @Expose
     private String tagName;
-
-    public int getEntityId() {
-        return entityId;
-    }
-
-    public void setEntityId(int entityId) {
-        this.entityId = entityId;
-    }
 
     public String getUserId() {
         return userId;

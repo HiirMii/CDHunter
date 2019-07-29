@@ -66,6 +66,7 @@ public class ArtistSummaryVerticalAdapter extends
 
     public void setArtistSummaryList(List<ArtistSummary> artistSummaryList) {
         this.artistSummaryList = artistSummaryList;
+        notifyDataSetChanged();
     }
 
     public class ArtistSummaryViewHolder extends RecyclerView.ViewHolder
