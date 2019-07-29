@@ -31,4 +31,9 @@ public class AlbumViewModel extends ViewModel {
     public LiveData<List<Album>> getAlbumList(String userId, String ownershipStatus) {
         return albumRepository.getAllAlbums(userId, ownershipStatus);
     }
+
+    public void updateAlbumsOwnershipStatus(String userId, String ArtistName,
+                                            String albumName, String ownershipStatus) {
+        albumRepository.updateAlbumsOwnershipStatus(userId, ArtistName, albumName, ownershipStatus);
+    }
 }

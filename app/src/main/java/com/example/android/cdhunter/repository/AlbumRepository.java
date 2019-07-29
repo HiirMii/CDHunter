@@ -119,4 +119,11 @@ public class AlbumRepository {
     public LiveData<List<Album>> getAllAlbums(String userId, String ownershipStatus) {
         return albumDao.getAllAlbums(userId, ownershipStatus);
     }
+
+    public void updateAlbumsOwnershipStatus(String userId, String ArtistName,
+                                            String albumName, String ownershipStatus) {
+        appExecutors.diskIO().execute(() -> {
+            albumDao.updateSingleAlbumOwnershipStatus(userId, ArtistName, albumName, ownershipStatus);
+                });
+    }
 }

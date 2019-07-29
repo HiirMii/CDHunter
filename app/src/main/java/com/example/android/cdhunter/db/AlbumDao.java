@@ -34,6 +34,8 @@ public interface AlbumDao {
             + "AND albumName = :albumName LIMIT 1")
     Album checkIfAlbumExists(String userId, String artistName, String albumName);
 
-    @Query("UPDATE albums SET ownershipStatus = :ownershipStatus WHERE userId = :userId AND albumId = :albumId")
-    void updateSingleAlbumOwnershipStatus(String userId, String albumId, String ownershipStatus);
+    @Query("UPDATE albums SET ownershipStatus = :ownershipStatus WHERE userId = :userId "
+            + "AND artistName = :artistName AND albumName = :albumName")
+    void updateSingleAlbumOwnershipStatus(String userId, String artistName, String albumName,
+                                          String ownershipStatus);
 }

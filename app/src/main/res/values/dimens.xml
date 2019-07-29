@@ -35,4 +35,7 @@
     <dimen name="tiny_margin">4dp</dimen>
 
     <dimen name="suggestion_item_width">166dp</dimen>
+
+    <dimen name="fab_wishlist_bottom_margin">90dp</dimen>
+    <dimen name="fab_collection_bottom_margin">160dp</dimen>
 </resources>

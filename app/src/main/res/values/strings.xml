@@ -119,5 +119,9 @@
 
     <!-- ALBUM -->
     <string name="album_track_list_label">Track List</string>
+    <string name="fab_collection_add">Add to collection</string>
+    <string name="fab_collection_remove">Remove from collection</string>
+    <string name="fab_wishlist_add">Add to wishlist</string>
+    <string name="fab_wishlist_remove">Remove from wishlist</string>
 
 </resources>
