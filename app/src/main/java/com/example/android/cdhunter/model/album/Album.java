@@ -48,6 +48,8 @@ public class Album {
 
     private String albumSummary;
 
+    private String firebaseQuery;
+
     @Ignore
     @SerializedName("wiki")
     @Expose
@@ -119,6 +121,14 @@ public class Album {
         this.albumSummary = albumSummary;
     }
 
+    public String getFirebaseQuery() {
+        return firebaseQuery;
+    }
+
+    public void setFirebaseQuery(String firebaseQuery) {
+        this.firebaseQuery = firebaseQuery;
+    }
+
     public Wiki getWiki() {
         return wiki;
     }
@@ -136,7 +146,7 @@ public class Album {
     }
 
     public Album(String userId, String albumName, String artistName, String albumId, List<Image> listOfImages,
-                 List<Track> listOfTracks, String albumSummary, String ownershipStatus) {
+                 List<Track> listOfTracks, String albumSummary, String firebaseQuery, String ownershipStatus) {
         this.userId = userId;
         this.albumName = albumName;
         this.artistName = artistName;
@@ -144,6 +154,10 @@ public class Album {
         this.listOfImages = listOfImages;
         this.listOfTracks = listOfTracks;
         this.albumSummary = albumSummary;
+        this.firebaseQuery = firebaseQuery;
         this.ownershipStatus = ownershipStatus;
+    }
+
+    public Album() {
     }
 }

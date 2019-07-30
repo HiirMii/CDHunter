@@ -1,5 +1,6 @@
 package com.example.android.cdhunter.repository;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
 import com.example.android.cdhunter.AppExecutors;
@@ -8,7 +9,13 @@ import com.example.android.cdhunter.db.AlbumDao;
 import com.example.android.cdhunter.model.album.Album;
 import com.example.android.cdhunter.model.album.AlbumResponse;
 import com.example.android.cdhunter.utils.Constants;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,7 +33,13 @@ public class AlbumRepository {
     private final AlbumDao albumDao;
     private final LastFmService lastFmService;
 
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = database.getReference("albums");
+
     private String albumSummary;
+
+    private List<Album> albumList = new ArrayList<>();
+    private Album currentAlbum;
 
     @Inject
     public AlbumRepository(AppExecutors appExecutors, AlbumDao albumDao,
@@ -60,6 +73,11 @@ public class AlbumRepository {
                                             } else {
                                                 albumSummary = albumResponse.getAlbum().getWiki().getSummary();
                                             }
+
+                                            String query = userId + "_" +
+                                                    albumResponse.getAlbum().getArtistName() + "_" +
+                                                    albumResponse.getAlbum().getAlbumName();
+
                                             Album album = new Album(
                                                     userId,
                                                     albumResponse.getAlbum().getAlbumName(),
@@ -68,6 +86,7 @@ public class AlbumRepository {
                                                     albumResponse.getAlbum().getListOfImages(),
                                                     albumResponse.getAlbum().getTrackList().getTrackList(),
                                                     albumSummary,
+                                                    query,
                                                     ownershipStatus
                                             );
                                             albumDao.insertSingleAlbum(album);
@@ -93,6 +112,11 @@ public class AlbumRepository {
                                             } else {
                                                 albumSummary = albumResponse.getAlbum().getWiki().getSummary();
                                             }
+
+                                            String query = userId + "_" +
+                                                    albumResponse.getAlbum().getArtistName() + "_" +
+                                                    albumResponse.getAlbum().getAlbumName();
+
                                             Album album = new Album(
                                                     userId,
                                                     albumResponse.getAlbum().getAlbumName(),
@@ -101,9 +125,14 @@ public class AlbumRepository {
                                                     albumResponse.getAlbum().getListOfImages(),
                                                     albumResponse.getAlbum().getTrackList().getTrackList(),
                                                     albumSummary,
+                                                    query,
                                                     ""
                                             );
                                             albumDao.insertSingleAlbum(album);
+                                            appExecutors.networkIO().execute(() -> {
+                                                String firebaseItemId = userId + "_" + artistName + "_" + albumName;
+                                                databaseReference.child(firebaseItemId).setValue(album);
+                                            });
                                         });
                                     }
 
@@ -120,10 +149,37 @@ public class AlbumRepository {
         return albumDao.getAllAlbums(userId, ownershipStatus);
     }
 
-    public void updateAlbumsOwnershipStatus(String userId, String ArtistName,
+    public void insertAllAlbums() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot album : dataSnapshot.getChildren()) {
+                    currentAlbum = album.getValue(Album.class);
+                    albumList.add(currentAlbum);
+                }
+                appExecutors.diskIO().execute(() -> {
+                    albumDao.insertAllAlbums(albumList);
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void updateAlbumsOwnershipStatus(String userId, String artistName,
                                             String albumName, String ownershipStatus) {
         appExecutors.diskIO().execute(() -> {
-            albumDao.updateSingleAlbumOwnershipStatus(userId, ArtistName, albumName, ownershipStatus);
-                });
+            albumDao.updateSingleAlbumOwnershipStatus(userId, artistName, albumName, ownershipStatus);
+            appExecutors.networkIO().execute(() -> {
+                String query = userId + "_" + artistName + "_" + albumName;
+                databaseReference.orderByChild("firebaseQuery").equalTo(query);
+                databaseReference.child(query).child("ownershipStatus").setValue(ownershipStatus);
+            });
+        });
     }
 }

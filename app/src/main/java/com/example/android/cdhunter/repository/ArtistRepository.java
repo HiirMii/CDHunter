@@ -29,7 +29,6 @@ public class ArtistRepository {
     private Artist artist = new Artist();
     private MutableLiveData<Artist> artistLiveData = new MutableLiveData<>();
 
-
     private List<SimilarArtist> similarArtistList = new ArrayList<>();
     private List<Tag> tagList = new ArrayList<>();
 
@@ -77,14 +76,16 @@ public class ArtistRepository {
         return artistLiveData;
     }
 
-    // add userId to every SimilarArtist object
-    public void addUserIdAndArtistNameToSimilarArtist(String userId,String artistName, List<SimilarArtist> similarArtistList) {
+    // add userId and artistName to every SimilarArtist object
+    public void addUserIdAndArtistNameToSimilarArtist(String userId, String artistName,
+                                                      List<SimilarArtist> similarArtistList) {
         for (int i = 0; i < similarArtistList.size(); i++) {
             similarArtistList.get(i).setUserId(userId);
             similarArtistList.get(i).setArtistName(artistName);
         }
     }
 
+    // add userId and artistName to every Tag object
     public void addUserIdAndArtistNameToTag(String userId, String artistName, List<Tag> tagList) {
         for (int i = 0; i < tagList.size(); i++) {
             tagList.get(i).setUserId(userId);

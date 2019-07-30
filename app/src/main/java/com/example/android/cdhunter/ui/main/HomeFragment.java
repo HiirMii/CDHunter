@@ -122,6 +122,8 @@ public class HomeFragment extends Fragment implements Injectable,
         SuggestionsViewModel suggestionsViewModel = ViewModelProviders
                 .of(this, viewModelFactory).get(SuggestionsViewModel.class);
 
+        suggestionsViewModel.insertAllAlbums();
+
         suggestionsViewModel.getChartTopArtists().observe(this,
                 artistSummaries -> {
                     if (artistSummaries != null) {

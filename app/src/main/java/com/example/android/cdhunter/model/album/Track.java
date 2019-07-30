@@ -33,4 +33,7 @@ public class Track {
         this.trackName = trackName;
         this.trackDuration = trackDuration;
     }
+
+    public Track() {
+    }
 }

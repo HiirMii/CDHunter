@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.android.cdhunter.model.common.ArtistSummary;
 import com.example.android.cdhunter.model.topalbums.AlbumSummary;
+import com.example.android.cdhunter.repository.AlbumRepository;
 import com.example.android.cdhunter.repository.AlbumSummaryRepository;
 import com.example.android.cdhunter.repository.ArtistSummaryRepository;
 
@@ -20,13 +21,16 @@ public class SuggestionsViewModel extends ViewModel {
 
     private AlbumSummaryRepository albumSummaryRepository;
     private ArtistSummaryRepository artistSummaryRepository;
+    private AlbumRepository albumRepository;
 
     @SuppressWarnings("unchecked")
     @Inject
     public SuggestionsViewModel(AlbumSummaryRepository albumSummaryRepository,
-                                ArtistSummaryRepository artistSummaryRepository) {
+                                ArtistSummaryRepository artistSummaryRepository,
+                                AlbumRepository albumRepository) {
         this.albumSummaryRepository = albumSummaryRepository;
         this.artistSummaryRepository = artistSummaryRepository;
+        this.albumRepository = albumRepository;
     }
 
     public LiveData<List<AlbumSummary>> getUserInterestArtistTopAlbums(String userId) {
@@ -51,5 +55,9 @@ public class SuggestionsViewModel extends ViewModel {
 
     public LiveData<List<ArtistSummary>> getUserInterestTagTopArtists(String userId) {
         return artistSummaryRepository.getUserInterestTagTopArtists(userId);
+    }
+
+    public void insertAllAlbums () {
+        albumRepository.insertAllAlbums();
     }
 }

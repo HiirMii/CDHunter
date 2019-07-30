@@ -33,4 +33,7 @@ public class Image {
         this.imageUrl = imageUrl;
         this.imageSize = imageSize;
     }
+
+    public Image() {
+    }
 }
