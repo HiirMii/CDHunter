@@ -11,6 +11,7 @@ import com.example.android.cdhunter.model.topalbums.TopAlbumsResponse;
 import com.example.android.cdhunter.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -56,6 +57,7 @@ public class AlbumSummaryRepository {
                 if (topAlbumsResponse != null &&
                         topAlbumsResponse.getTopAlbums().getAlbumList() != null) {
                     albumSummaryList = topAlbumsResponse.getTopAlbums().getAlbumList();
+                    removeNullAlbums(albumSummaryList);
                     albumSummaryLiveData.setValue(albumSummaryList);
                 }
             }
@@ -85,6 +87,7 @@ public class AlbumSummaryRepository {
                                             topAlbumsResponse.getTopAlbums().getAlbumList() != null) {
                                         userInterestAlbumSummaryList =
                                                 topAlbumsResponse.getTopAlbums().getAlbumList();
+                                        removeNullAlbums(userInterestAlbumSummaryList);
                                         userInterestAlbumSummaryLiveData.setValue(userInterestAlbumSummaryList);
                                     }
                                 }
@@ -105,5 +108,17 @@ public class AlbumSummaryRepository {
     public String getSimilarArtistName(List<SimilarArtist> similarArtistList) {
         Random random = new Random();
         return similarArtistList.get(random.nextInt(similarArtistList.size())).getSimilarArtistName();
+    }
+
+    // remove albums with (null) name
+    public void removeNullAlbums(List<AlbumSummary> albumSummaryList) {
+        Iterator<AlbumSummary> iterator = albumSummaryList.iterator();
+        while (iterator.hasNext()) {
+            AlbumSummary albumSummary = iterator.next();
+            if (albumSummary.getName().equals("(null)")) {
+                iterator.remove();
+                break;
+            }
+        }
     }
 }

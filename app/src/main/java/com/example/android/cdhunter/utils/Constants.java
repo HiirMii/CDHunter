@@ -11,4 +11,7 @@ public class Constants {
     // ownership status constants
     public static final String COLLECTION = "collection";
     public static final String WISHLIST = "wishlist";
+
+    // firebase constants
+    public static final  String ALBUMS = "albums";
 }

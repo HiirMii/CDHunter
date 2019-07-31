@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- AUTH -->
+    <style name="auth_submit_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/big_margin</item>
+        <item name="android:paddingBottom">@dimen/big_margin</item>
+        <item name="android:paddingStart">@dimen/collection_list_item_image_size</item>
+        <item name="android:paddingEnd">@dimen/collection_list_item_image_size</item>
+    </style>
+
+    <style name="auth_method_picker_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/huge_margin</item>
+        <item name="android:layout_marginEnd">@dimen/huge_margin</item>
+        <item name="android:padding">@dimen/auth_btn_vertical_padding</item>
+    </style>
+</resources>

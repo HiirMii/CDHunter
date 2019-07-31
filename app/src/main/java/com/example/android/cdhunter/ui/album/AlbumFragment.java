@@ -236,8 +236,10 @@ public class AlbumFragment extends Fragment implements Injectable {
         currentAlbumName = album.getAlbumName();
         currentOwnershipStatus = album.getOwnershipStatus();
 
-        if (!album.getListOfTracks().isEmpty()) {
-            trackListLabel.setVisibility(View.VISIBLE);
+        if (album.getListOfTracks() != null) {
+            if (!album.getListOfTracks().isEmpty()) {
+                trackListLabel.setVisibility(View.VISIBLE);
+            }
         }
         LinearLayoutManager trackListLayoutManager = new LinearLayoutManager(getActivity());
         trackListRecyclerView.setLayoutManager(trackListLayoutManager);

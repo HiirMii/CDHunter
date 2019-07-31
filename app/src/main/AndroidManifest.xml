@@ -15,14 +15,40 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.searchresults.SearchResultsActivity"/>
-        <activity android:name=".ui.album.AlbumActivity" />
-        <activity android:name=".ui.artist.ArtistActivity" />
-        <activity android:name=".ui.profile.ProfileActivity" />
+        <receiver android:name=".widget.WishlistWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/wishlist_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".widget.WishlistWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <activity
+            android:name=".ui.searchresults.SearchResultsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.album.AlbumActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".ui.artist.ArtistActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:configChanges="orientation|keyboardHidden" />
         <activity
             android:name=".ui.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name=".ui.main.MainActivity"
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

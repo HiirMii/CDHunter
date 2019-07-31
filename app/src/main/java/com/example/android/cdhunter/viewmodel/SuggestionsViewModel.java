@@ -57,7 +57,7 @@ public class SuggestionsViewModel extends ViewModel {
         return artistSummaryRepository.getUserInterestTagTopArtists(userId);
     }
 
-    public void insertAllAlbums () {
-        albumRepository.insertAllAlbums();
+    public void insertAllAlbums (String userId) {
+        albumRepository.insertAllAlbums(userId);
     }
 }

@@ -34,7 +34,7 @@ public class AlbumRepository {
     private final LastFmService lastFmService;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = database.getReference("albums");
+    private DatabaseReference databaseReference = database.getReference().child(Constants.ALBUMS);
 
     private String albumSummary;
 
@@ -113,7 +113,7 @@ public class AlbumRepository {
                                                 albumSummary = albumResponse.getAlbum().getWiki().getSummary();
                                             }
 
-                                            String query = userId + "_" +
+                                            String query =
                                                     albumResponse.getAlbum().getArtistName() + "_" +
                                                     albumResponse.getAlbum().getAlbumName();
 
@@ -130,8 +130,8 @@ public class AlbumRepository {
                                             );
                                             albumDao.insertSingleAlbum(album);
                                             appExecutors.networkIO().execute(() -> {
-                                                String firebaseItemId = userId + "_" + artistName + "_" + albumName;
-                                                databaseReference.child(firebaseItemId).setValue(album);
+                                                String firebaseItemId = artistName + "_" + albumName;
+                                                databaseReference.child(userId).child(firebaseItemId).setValue(album);
                                             });
                                         });
                                     }
@@ -149,8 +149,8 @@ public class AlbumRepository {
         return albumDao.getAllAlbums(userId, ownershipStatus);
     }
 
-    public void insertAllAlbums() {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+    public void insertAllAlbums(String userId) {
+        databaseReference.child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot album : dataSnapshot.getChildren()) {
@@ -176,9 +176,9 @@ public class AlbumRepository {
         appExecutors.diskIO().execute(() -> {
             albumDao.updateSingleAlbumOwnershipStatus(userId, artistName, albumName, ownershipStatus);
             appExecutors.networkIO().execute(() -> {
-                String query = userId + "_" + artistName + "_" + albumName;
-                databaseReference.orderByChild("firebaseQuery").equalTo(query);
-                databaseReference.child(query).child("ownershipStatus").setValue(ownershipStatus);
+                String query = artistName + "_" + albumName;
+                databaseReference.child(userId).orderByChild("firebaseQuery").equalTo(query);
+                databaseReference.child(userId).child(query).child("ownershipStatus").setValue(ownershipStatus);
             });
         });
     }

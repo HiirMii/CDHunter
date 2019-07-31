@@ -20,6 +20,7 @@
     //text sizes
     <dimen name="auth_app_name_size">30sp</dimen>
     <dimen name="auth_main_header_size">24sp</dimen>
+    <dimen name="tablet_tag_text">20dp</dimen>
     <dimen name="auth_label_size">16sp</dimen>
     <dimen name="secondary_header_text">14sp</dimen>
     <dimen name="standard_text_size">12sp</dimen>
@@ -39,4 +40,12 @@
 
     <dimen name="fab_wishlist_bottom_margin">90dp</dimen>
     <dimen name="fab_collection_bottom_margin">160dp</dimen>
+
+    <!--
+Refer to App Widget Documentation for margin information
+http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
+    -->
+    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="widget_width">110dp</dimen>
+    <dimen name="widget_height">180dp</dimen>
 </resources>

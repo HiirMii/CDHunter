@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/tiny_margin"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_wishlist_item_album_name"
+        style="@style/collection_list_item_title"
+        tools:text="@string/album_name"
+        android:textSize="@dimen/standard_text_size" />
+
+    <TextView
+        android:id="@+id/tv_wishlist_item_artist_name"
+        style="@style/collection_list_item_subtitle"
+        tools:text="@string/artist_name"
+        android:textSize="@dimen/auth_helper_text" />
+
+</LinearLayout>
