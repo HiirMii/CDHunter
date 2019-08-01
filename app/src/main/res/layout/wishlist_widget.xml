@@ -6,33 +6,37 @@
     android:background="@color/colorPrimaryDark">
 
     <TextView
-        android:id="@+id/widget_wishlist_title"
+        android:id="@+id/widget_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
         android:background="@color/colorAccent"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center_horizontal"
         android:paddingTop="@dimen/extra_small_margin"
         android:paddingBottom="@dimen/extra_small_margin"
-        android:gravity="center_horizontal"
-        android:text="@string/bottom_nav_wishlist"
-        android:textSize="@dimen/auth_label_size"
-        android:textColor="@android:color/white" />
-
-    <ListView
-        android:id="@+id/widget_list_view"
-        android:layout_below="@id/widget_wishlist_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/widget_list_item"/>
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/auth_label_size" />
 
     <TextView
-        android:id="@+id/widget_empty_list_view"
+        android:id="@+id/widget_wishlist_count_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/standard_text_size"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/widget_title"
+        android:layout_marginTop="@dimen/small_margin"
         android:gravity="center"
-        android:text="@string/widget_empty_view_text"/>
+        android:text="@string/widget_empty_view_text"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/standard_text_size" />
+
+    <TextView
+        android:id="@+id/wishlist_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_wishlist_count_text"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/small_margin"
+        android:textSize="@dimen/widget_count"
+        tools:text="0" />
 
 </RelativeLayout>

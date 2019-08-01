@@ -25,10 +25,6 @@
                 android:resource="@xml/wishlist_widget_info" />
         </receiver>
 
-        <service
-            android:name=".widget.WishlistWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS" />
-
         <activity
             android:name=".ui.searchresults.SearchResultsActivity"
             android:configChanges="orientation|keyboardHidden"
